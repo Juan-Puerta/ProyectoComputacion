@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Info threshold</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+			crossorigin="anonymous">
+		<link rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+			integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+			crossorigin="anonymous">
+		<link rel="stylesheet" href="../css/shards.min.css">
+	</head>
+	<body>
+		<style>	
+			body{
+				padding: 50px;
+				background: #34495e;
+			}
+			a, td, th, h2, label{
+				color: white;			
+			}
+		</style>
+		<div class="container my-5">
+			<h2 class="mb-5">Informacion</h2>
+			<div class="row">
+				<div class="col-md-6">
+					<form action="#" th:action="@{/view/threshold/{id}(id=${threshold.thresId})}" th:object="${threshold}" method="post">
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="id" class="col-form-label">ID</label> 
+								<input type="text" th:field="*{thresId}" class="form-control" id="id" placeholder="id" readonly> 
+								<span th:if="${#fields.hasErrors('thresId')}" th:errors="*{thresId}"></span>
+							</div> 
+							<div class="form-group col-md-6">
+								<label for="thresName" class="col-form-label">Nombre</label> 
+								<input type="text" th:field="*{thresName}" class="form-control" id="thresName" name="thresName" placeholder="Device type name" readonly>
+								<span th:if="${#fields.hasErrors('thresName')}" th:errors="*{thresName}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="thresValue" class="col-form-label">Valor</label> 
+								<input type="text" th:field="*{thresValue}" class="form-control" id="thresValue" name="thresValue" placeholder="Device type name" readonly>
+								<span th:if="${#fields.hasErrors('thresValue')}" th:errors="thresValue" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="thresValuetype" class="col-form-label">Tipo de valor</label> 
+								<input type="text" th:field="*{thresValuetype}" class="form-control" id="thresValuetype" name="thresValuetype" placeholder="Device type name" readonly>
+								<span th:if="${#fields.hasErrors('thresValuetype')}" th:errors="*{thresValuetype}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="instInstId" class="col-form-label">ID institucion</label> 
+								<input type="text" th:field="*{instInstId}" class="form-control" id="instInstId" name="instInstId" placeholder="Device type name" readonly>
+								<span th:if="${#fields.hasErrors('instInstId')}" th:errors="*{instInstId}" class="text-danger"></span>
+							</div>	
+									
+						</div>
+						<div class="row">
+							<div class="col-md-4 mt-3">
+							<td>
+								<a href="/threshold/" class="btn btn-primary">Regresar</a>
+							</td>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Agregar condicion local</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+			crossorigin="anonymous">
+		<link rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+			integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+			crossorigin="anonymous">
+		<link rel="stylesheet" href="../css/shards.min.css">
+	</head>
+	<body>
+		<style>	
+			body{
+				padding: 50px;
+				background: #34495e;
+			}
+			a, td, th, h2, label{
+				color: white;			
+			}
+		</style>
+		<div class="container my-5">
+			<h2 class="mb-5">Nueva condicion local</h2>
+			<div class="row">
+				<div class="col-md-6">
+				<h3 class="mb-2">Infomacion Requerida</h3>
+					<form action="#" th:action="@{/condicionlocal/add}" th:object="${condicionlocal}" method="post">
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="loconColumnname" class="col-form-label">Nombre de columna</label> 
+								<input type="text" th:field="*{loconColumnname}" class="form-control" id="loconColumnname" name="loconColumnname">
+								<span th:if="${#fields.hasErrors('loconColumnname')}" th:errors="*{loconColumnname}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="loconKeycolumn" class="col-form-label">Llave de columna</label> 
+								<input type="text" th:field="*{loconKeycolumn}" class="form-control" id="loconKeycolumn" name="loconKeycolumn">
+								<span th:if="${#fields.hasErrors('loconKeycolumn')}" th:errors="*{loconKeycolumn}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="loconOperator" class="col-form-label">Operador</label> 
+									<select	class="form-control-range" th:field="*{loconOperator}" id=loconOperator>
+										<option value="<>">&lt;&gt;</option>
+										<option value="< >">&lt; &gt;</option>
+										<option value="==">==</option>
+									</select>
+								<span th:if="${#fields.hasErrors('loconOperator')}" th:errors="*{loconOperator}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="loconQuerystring" class="col-form-label">Query String</label> 
+								<input type="text" th:field="*{loconQuerystring}" class="form-control" id="loconQuerystring" name="loconQuerystring">
+								<span th:if="${#fields.hasErrors('loconQuerystring')}" th:errors="*{loconQuerystring}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="loconTablename" class="col-form-label">Nombre de tabla</label> 
+								<input type="text" th:field="*{loconTablename}" class="form-control" id="loconTablename" name="loconTablename">
+								<span th:if="${#fields.hasErrors('loconTablename')}" th:errors="*{loconTablename}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="loconValuetype" class="col-form-label">Tipo de valor</label> 
+								<input type="text" th:field="*{loconValuetype}" class="form-control" id="loconValuetype" name="loconValuetype">
+								<span th:if="${#fields.hasErrors('loconValuetype')}" th:errors="*{loconValuetype}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="precondition" class="col-form-label">Precondiciones</label>
+								<select	class="form-control-range" th:field="*{precondition}">
+									<option th:each="pre : ${precondiciones}" th:value="${pre.preconId}"
+									class="form-control" th:text="${pre.preconLogicaloperand}" th:selected="${condicionlocal.precondition=pre}"></option>
+								</select>
+								<span th:if="${#fields.hasErrors('precondition')}" th:errors="*{precondition}" class="text-danger"></span>
+							</div>	
+							<div class="form-group col-md-6">
+								<label for="threshold" class="col-form-label">Thresholds</label>
+								<select	class="form-control-range" th:field="*{threshold}">
+									<option th:each="thr : ${thresholdes}" th:value="${thr.thresId}"
+									class="form-control" th:text="${thr.thresName}" th:selected="${condicionlocal.threshold=thr}"></option>
+								</select>
+								<span th:if="${#fields.hasErrors('threshold')}" th:errors="*{threshold}" class="text-danger"></span>
+							</div>					
+						</div>
+						<div class="row">
+							<div class="col-md-4 mt-3">
+								<input type="submit" name="action" class="btn btn-primary" value="Agregar">
+							</div>
+							<div class="col-md-3 mt-3">
+								<input type="reset" class="btn btn-secondary" value="Limpiar">
+							</div>
+							<div class="col-md-3 mt-3">
+								<input type="submit" name="action" class="btn btn-secondary" value="Cancelar">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
